@@ -1,0 +1,21 @@
+﻿kayitli-degil:
+- 'Bu sunucuda kayıtlı değilsin lütfen www.arvalex.com dan kayıt ol!'
+- ' '
+gec-kaldin:
+- 'Şifreyi uzun zaman boyunca giremediğin için atıldın!'
+- 'Tekrar deneyebilirsin!'
+sifre-yanlis:
+- 'Bir çok defa şifreni yanlış girdin.'
+- 'Şifreni unuttuysan www.arvalex.com'
+lobi-komut: 'gitlanlobiye'
+Giris:
+  satir1: '§k'
+  satir2: '§c^^^^^^^^'
+  satir3: '§cGiriş Aşaması'
+  satir4: '§4'
+mysql:
+  Host:
+  User:
+  Password:
+  DB:
+  Table: 'Accounts'
