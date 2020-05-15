@@ -62,7 +62,6 @@ public class CB_1_15_R1 implements NMS{
         		}
         };
         ChannelPipeline pipeline = ((CraftPlayer)p).getHandle().playerConnection.networkManager.channel.pipeline();
-       
         pipeline.addBefore("packet_handler", p.getName(), cdh);
          
 	}

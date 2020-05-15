@@ -17,7 +17,7 @@ public class API {
 	
 	
 	public static boolean miKayitli(Player p) {
-		if(!Veri.get(p).equalsIgnoreCase("Hata!")) {
+		if(!Veri.oyuncudurum.get(p.getUniqueId()).equalsIgnoreCase("Hata!")) {
 			return true;
 		}
 		return false;
@@ -35,8 +35,6 @@ public class API {
 			if(!Veri.oyuncudurum.get(p.getUniqueId()).equalsIgnoreCase("Hata!")) {
 				String hamhal = Veri.oyuncudurum.get(p.getUniqueId());
 				String salt = hamhal.substring(0, 16);
-				Bukkit.broadcastMessage("Tabela hal:" + salt+"$"+Sifrele.sifrele(Sifrele.sifrele(s)+salt));
-				Bukkit.broadcastMessage("Ham hal: "+hamhal);
 				if(hamhal.equalsIgnoreCase(salt+"$"+Sifrele.sifrele(Sifrele.sifrele(s)+salt))) {
 					return true;
 				}

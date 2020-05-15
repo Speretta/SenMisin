@@ -9,9 +9,10 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 
 
 
@@ -20,10 +21,14 @@ public class Event implements Listener{
 	
 
 	@EventHandler
-	public void onJoin(PlayerJoinEvent e) {
+	public void onJoin(PlayerLoginEvent e) {
 		if (!Veri.oyuncudurum.containsKey(e.getPlayer().getUniqueId())) {
 			Veri.oyuncudurum.put(e.getPlayer().getUniqueId(),Veri.get(e.getPlayer()).replace("$SHA$", ""));
-			
+			if(!API.miKayitli(e.getPlayer())) {
+				e.setKickMessage(Veri.kayitli_degil);
+				e.setResult(Result.KICK_WHITELIST);
+				
+			}
 		}
 	}
 

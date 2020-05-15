@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.Speretta.SenMisin.GirisAPI.API;
+import me.Speretta.SenMisin.GirisAPI.Veri;
 import me.Speretta.SenMisin.NMS.NMSUtil;
 
 public class Main extends JavaPlugin{
@@ -15,12 +16,14 @@ public class Main extends JavaPlugin{
 	public NMSUtil nmsutil;
 	public Event event;
 	public API api;
+	public Veri veri;
 	@Override
 	public void onEnable() {
 		instance = this;
 		event = new Event();
 		nmsutil = new NMSUtil();
 		api = new API();
+		veri = new Veri();
 		Main.getInstance().saveDefaultConfig();
 		NMSUtil.setupNMS();
 		Bukkit.getPluginManager().registerEvents(event, this);

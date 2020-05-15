@@ -20,13 +20,13 @@ public class Veri {
     public static String sifre_yanlis;
 	public Veri() {
         for(Object s:Main.getInstance().getConfig().getList("kayitli-degil")) {
-        	kayitli_degil += s+"\n";
+        	kayitli_degil += String.valueOf(s)+"\n";
         }
         for(Object s:Main.getInstance().getConfig().getList("gec-kaldin")) {
-        	gec_kaldin += s+"\n";
+        	gec_kaldin += String.valueOf(s)+"\n";
         }
         for(Object s:Main.getInstance().getConfig().getList("sifre-yanlis")) {
-        	sifre_yanlis += s+"\n";
+        	sifre_yanlis += String.valueOf(s)+"\n";
         }
        
 	}
