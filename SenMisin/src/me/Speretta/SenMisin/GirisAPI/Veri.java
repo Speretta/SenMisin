@@ -18,7 +18,16 @@ public class Veri {
     public static String kayitli_degil = new String();
     public static String gec_kaldin = new String();
     public static String sifre_yanlis = new String();
+    public static String host,db,user,pass,table;
+    public static String title,subtitle;
 	public Veri() {
+		host= Main.getInstance().getConfig().getString("mysql.Host");
+		db= Main.getInstance().getConfig().getString("mysql.DB");
+		user= Main.getInstance().getConfig().getString("mysql.User");
+		pass= Main.getInstance().getConfig().getString("mysql.Password");
+		table= Main.getInstance().getConfig().getString("mysql.Table");
+		title= Main.getInstance().getConfig().getString("title.title");
+		subtitle= Main.getInstance().getConfig().getString("title.subtitle");
         for(Object s:Main.getInstance().getConfig().getList("kayitli-degil")) {
         	kayitli_degil += String.valueOf(s)+"\n";
         }
@@ -37,9 +46,9 @@ public class Veri {
 		String kod = "Hata!";
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://2.59.118.83/arvalexc_thenish", "arvalexc_protechtheyka", "@Butalibsiriyev200311");
+			Connection con = DriverManager.getConnection("jdbc:mysql://"+host+"/"+db, user, pass);
 			Statement statement = con.createStatement(); 
-			ResultSet result = statement.executeQuery("SELECT * FROM Accounts WHERE realname='" + p.getName() + "'");
+			ResultSet result = statement.executeQuery("SELECT * FROM "+table+" WHERE realname='" + p.getName() + "'");
 			if (result.next()==true) {
 				kod = result.getString("password");
 			}

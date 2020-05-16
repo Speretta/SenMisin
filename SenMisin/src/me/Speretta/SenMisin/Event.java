@@ -19,14 +19,23 @@ public class Event implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		if(API.miKayitSirasinda(e.getPlayer())) {
 				acTabela(e.getPlayer());
-				Bukkit.getScheduler().runTaskLater(Main.getInstance(), new Runnable() {
+				new BukkitRunnable() {
+					int count = 0;
 					@Override
 					public void run() {
-						if(API.miKayitSirasinda(e.getPlayer())) {
-							e.getPlayer().kickPlayer(Veri.gec_kaldin);
+						if(!Bukkit.getOnlinePlayers().contains(e.getPlayer())) {
+							cancel();
 						}
+						if(count > 29) {
+							if(API.miKayitSirasinda(e.getPlayer())) {
+								e.getPlayer().kickPlayer(Veri.gec_kaldin);
+								cancel();
+							}
+						}
+						count++;
 					}
-				}, 30*20);
+				}.runTaskTimer(Main.getInstance(), 0, 20);
+			
 	}
 }
 	
@@ -39,7 +48,7 @@ public class Event implements Listener {
 					int count[] = new int[] {4};
 					new BukkitRunnable() {
 		                public void run() {
-		                	NMSUtil.getNMS().showTitle(p, "§a"+(count[0]-1), "§7Saniye sonra lobiye aktarılacaksınız", new int[]{5,25,5});
+		                	NMSUtil.getNMS().showTitle(p, Veri.title.replace("{0}",String.valueOf((count[0]-1))), Veri.subtitle);
 		                	count[0]--;
 		                	if(count[0]==0) {
 		                		Bukkit.dispatchCommand(p, Main.getInstance().getConfig().getString("lobi-komut"));

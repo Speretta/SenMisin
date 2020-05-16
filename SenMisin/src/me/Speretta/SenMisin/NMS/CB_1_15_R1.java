@@ -66,13 +66,13 @@ public class CB_1_15_R1 implements NMS{
          
 	}
 	
-	public void showTitle(Player p, String title, String subtitle, int[] a) {
+	public void showTitle(Player p, String title, String subtitle) {
 		IChatBaseComponent chatTitle = ChatSerializer.a("{\"text\":\"" + title + "\"}");
-		IChatBaseComponent subTitle = ChatSerializer.a("{\"text\":\"" + title + "\"}");
+		IChatBaseComponent subTitle = ChatSerializer.a("{\"text\":\"" + subtitle + "\"}");
 
 	    PacketPlayOutTitle Title = new PacketPlayOutTitle(EnumTitleAction.TITLE, chatTitle);
 	    PacketPlayOutTitle SubTitle = new PacketPlayOutTitle(EnumTitleAction.SUBTITLE, subTitle);
-	    PacketPlayOutTitle length = new PacketPlayOutTitle(a[0], a[1], a[2]);
+	    PacketPlayOutTitle length = new PacketPlayOutTitle(1,21,5);
 
 	((CraftPlayer) p).getHandle().playerConnection.sendPacket(Title);
 	((CraftPlayer) p).getHandle().playerConnection.sendPacket(SubTitle);

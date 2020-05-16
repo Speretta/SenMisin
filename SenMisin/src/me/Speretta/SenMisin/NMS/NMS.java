@@ -9,5 +9,5 @@ public interface NMS {
         public void onDone(Player player, String[] lines);
     }
 	public void showSign(Player p, String[] text, SignListener listener);
-	public void showTitle(Player p, String title, String subtitle, int[] a);
+	public void showTitle(Player p, String title, String subtitle);
 }
