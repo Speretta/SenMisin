@@ -53,7 +53,7 @@ public class Event implements Listener {
 		            public void run() {
 		            	if (Veri.oyuncuhata.containsKey(p.getUniqueId())) {
 		            		Veri.oyuncuhata.put(p.getUniqueId(), Veri.oyuncuhata.get(p.getUniqueId())+1);
-		            		if(Veri.oyuncuhata.get(p.getUniqueId())>2) {
+		            		if(Veri.oyuncuhata.get(p.getUniqueId())>3) {
 		            			p.kickPlayer(Veri.sifre_yanlis);
 		            			return;
 		            		}

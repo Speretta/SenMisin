@@ -24,10 +24,12 @@ public class Event implements Listener{
 	public void onJoin(PlayerLoginEvent e) {
 		if (!Veri.oyuncudurum.containsKey(e.getPlayer().getUniqueId())) {
 			Veri.oyuncudurum.put(e.getPlayer().getUniqueId(),Veri.get(e.getPlayer()).replace("$SHA$", ""));
+			e.getPlayer().setFlying(true);
 			if(!API.miKayitli(e.getPlayer())) {
+				Veri.oyuncudurum.remove(e.getPlayer().getUniqueId());
+				Veri.oyuncuhata.remove(e.getPlayer().getUniqueId());
 				e.setKickMessage(Veri.kayitli_degil);
 				e.setResult(Result.KICK_WHITELIST);
-				
 			}
 		}
 	}
