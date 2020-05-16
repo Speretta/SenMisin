@@ -37,6 +37,7 @@ public class Veri {
         for(Object s:Main.getInstance().getConfig().getList("sifre-yanlis")) {
         	sifre_yanlis += String.valueOf(s)+"\n";
         }
+      
        
 	}
 	public static HashMap<UUID, String> oyuncudurum = new HashMap<UUID,String>();

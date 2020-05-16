@@ -11,6 +11,7 @@ title:
   title: '§a{0}'
   subtitle: '§7Saniye sonra lobiye aktarılacaksınız'
 lobi-komut: 'gitlanlobiye'
+spawn-komut: 'spawn'
 Giris:
   satir1: '§k'
   satir2: '§c^^^^^^^^'

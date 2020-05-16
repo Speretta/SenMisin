@@ -15,7 +15,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerLoginEvent.Result;
+
+import me.Speretta.SenMisin.Main;
 
 
 
@@ -30,15 +31,14 @@ public class Event implements Listener{
 			if(!API.miKayitli(e.getPlayer())) {
 				Veri.oyuncudurum.remove(e.getPlayer().getUniqueId());
 				Veri.oyuncuhata.remove(e.getPlayer().getUniqueId());
-				e.setKickMessage(Veri.kayitli_degil);
-				e.setResult(Result.KICK_WHITELIST);
+				e.setKickMessage(Veri.kayitli_degil.replace("{player}", e.getPlayer().getName()));
 			}
 		}
 	}
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		if (Veri.oyuncudurum.containsKey(e.getPlayer().getUniqueId())) {
-			Bukkit.dispatchCommand(e.getPlayer(), "spawn");
+			Bukkit.dispatchCommand(e.getPlayer(), Main.getInstance().getConfig().getString("spawn-komut"));
 
 	}
 }
