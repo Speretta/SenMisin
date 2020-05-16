@@ -35,8 +35,8 @@ public class Event implements Listener{
 		@EventHandler
 		public void onLeave(PlayerQuitEvent e) {
 			if (Veri.oyuncuhata.containsKey(e.getPlayer().getUniqueId())) {
-				e.setQuitMessage(null);
 				Veri.oyuncuhata.remove(e.getPlayer().getUniqueId());
+				Veri.oyuncudurum.remove(e.getPlayer().getUniqueId());
 			}
 	}
 	@EventHandler

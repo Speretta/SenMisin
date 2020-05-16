@@ -15,9 +15,9 @@ import me.Speretta.SenMisin.Main;
 
 
 public class Veri {
-    public static String kayitli_degil;
-    public static String gec_kaldin;
-    public static String sifre_yanlis;
+    public static String kayitli_degil = new String();
+    public static String gec_kaldin = new String();
+    public static String sifre_yanlis = new String();
 	public Veri() {
         for(Object s:Main.getInstance().getConfig().getList("kayitli-degil")) {
         	kayitli_degil += String.valueOf(s)+"\n";
