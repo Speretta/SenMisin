@@ -47,8 +47,6 @@ public class API {
 		if(Veri.oyuncudurum.containsKey(p.getUniqueId())) {
 			Veri.oyuncudurum.remove(p.getUniqueId());
 			Veri.oyuncuhata.remove(p.getUniqueId());
-			p.setFlying(false);
-			p.setAllowFlight(false);
 		}
 	}
 

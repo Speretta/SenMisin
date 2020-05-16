@@ -1,14 +1,17 @@
 package me.Speretta.SenMisin.GirisAPI;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -21,11 +24,9 @@ public class Event implements Listener{
 	
 
 	@EventHandler
-	public void onJoin(PlayerLoginEvent e) {
+	public void onLogin(PlayerLoginEvent e) {
 		if (!Veri.oyuncudurum.containsKey(e.getPlayer().getUniqueId())) {
 			Veri.oyuncudurum.put(e.getPlayer().getUniqueId(),Veri.get(e.getPlayer()).replace("$SHA$", ""));
-			e.getPlayer().setAllowFlight(true);
-			e.getPlayer().setFlying(true);
 			if(!API.miKayitli(e.getPlayer())) {
 				Veri.oyuncudurum.remove(e.getPlayer().getUniqueId());
 				Veri.oyuncuhata.remove(e.getPlayer().getUniqueId());
@@ -34,14 +35,23 @@ public class Event implements Listener{
 			}
 		}
 	}
+	@EventHandler
+	public void onJoin(PlayerJoinEvent e) {
+		if (Veri.oyuncudurum.containsKey(e.getPlayer().getUniqueId())) {
+			Bukkit.dispatchCommand(e.getPlayer(), "spawn");
+
+	}
+}
 
 		@EventHandler
 		public void onLeave(PlayerQuitEvent e) {
 			if (Veri.oyuncuhata.containsKey(e.getPlayer().getUniqueId())) {
 				Veri.oyuncuhata.remove(e.getPlayer().getUniqueId());
 				Veri.oyuncudurum.remove(e.getPlayer().getUniqueId());
-			}
+	
+		}
 	}
+	
 	@EventHandler
 	public void onMove(PlayerMoveEvent e) {
 		if(Veri.oyuncudurum.containsKey(e.getPlayer().getUniqueId())) {
@@ -59,6 +69,15 @@ public class Event implements Listener{
 	}
 	@EventHandler
 	public void onPickUp(EntityPickupItemEvent e) {
+		if (e.getEntity() instanceof Player) {
+			if(Veri.oyuncudurum.containsKey(e.getEntity().getUniqueId())) {
+				e.setCancelled(true);
+				
+			}
+		}
+	}
+	@EventHandler
+	public void onDrop(EntityDropItemEvent e) {
 		if (e.getEntity() instanceof Player) {
 			if(Veri.oyuncudurum.containsKey(e.getEntity().getUniqueId())) {
 				e.setCancelled(true);
