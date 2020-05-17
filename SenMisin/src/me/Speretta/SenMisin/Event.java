@@ -51,8 +51,10 @@ public class Event implements Listener {
 		                	NMSUtil.getNMS().showTitle(p, Veri.title.replace("{0}",String.valueOf((count[0]-1)).replace("{player}", p.getName())), Veri.subtitle.replace("{player}", p.getName()));
 		                	count[0]--;
 		                	if(count[0]==0) {
-		                		Bukkit.dispatchCommand(p, Main.getInstance().getConfig().getString("lobi-komut"));
-		                		cancel();
+		                		if(Main.getInstance().getConfig().getString("lobi-komut") != null) {
+			                		Bukkit.dispatchCommand(p, Main.getInstance().getConfig().getString("lobi-komut"));
+			                		cancel();
+		                		}
 		                	}
 		                }
 					}.runTaskTimer(Main.getInstance(), 0, 20);

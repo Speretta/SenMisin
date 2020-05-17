@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
@@ -32,14 +33,16 @@ public class Event implements Listener{
 				Veri.oyuncudurum.remove(e.getPlayer().getUniqueId());
 				Veri.oyuncuhata.remove(e.getPlayer().getUniqueId());
 				e.setKickMessage(Veri.kayitli_degil.replace("{player}", e.getPlayer().getName()));
+				e.setResult(Result.valueOf(Veri.kickresult));
 			}
 		}
 	}
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
 		if (Veri.oyuncudurum.containsKey(e.getPlayer().getUniqueId())) {
-			Bukkit.dispatchCommand(e.getPlayer(), Main.getInstance().getConfig().getString("spawn-komut"));
-
+			if(Main.getInstance().getConfig().getString("spawn-komut") != null) {
+				Bukkit.dispatchCommand(e.getPlayer(), Main.getInstance().getConfig().getString("spawn-komut"));
+			}
 	}
 }
 

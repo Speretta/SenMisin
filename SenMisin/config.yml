@@ -10,6 +10,7 @@ sifre-yanlis:
 title:
   title: '§a{0}'
   subtitle: '§7Saniye sonra lobiye aktarılacaksınız'
+kick-result: 'KICK_WHITELIST'
 lobi-komut: 'gitlanlobiye'
 spawn-komut: 'spawn'
 Giris:

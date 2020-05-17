@@ -20,6 +20,7 @@ public class Veri {
     public static String sifre_yanlis = new String();
     public static String host,db,user,pass,table;
     public static String title,subtitle;
+    public static String kickresult;
 	public Veri() {
 		host= Main.getInstance().getConfig().getString("mysql.Host");
 		db= Main.getInstance().getConfig().getString("mysql.DB");
@@ -28,6 +29,7 @@ public class Veri {
 		table= Main.getInstance().getConfig().getString("mysql.Table");
 		title= Main.getInstance().getConfig().getString("title.title");
 		subtitle= Main.getInstance().getConfig().getString("title.subtitle");
+		kickresult= Main.getInstance().getConfig().getString("kick-result");
         for(Object s:Main.getInstance().getConfig().getList("kayitli-degil")) {
         	kayitli_degil += String.valueOf(s)+"\n";
         }
